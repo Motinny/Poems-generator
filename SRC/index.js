@@ -13,13 +13,18 @@ event.preventDefault();
 let instructionsInput = document.querySelector("#user-instructions");
 let apiKey = "b0ec9t0dcd25f24cd4b29a53f7f0oe9b";
 let prompt = `User Instructions: Generate a short poem about ${instructionsInput.value}`;
-let context = "You are a poem expert and love to write short poems,you are requested to write a 5 letter poem.Follow the user instructions.Do not include the title of the poem.";
+let context = "You are a poem expert and love to write short poems,you are requested to write a 5 letter poem spareted by the <br/> element.Follow the user instructions.Do not include the title of the poem.";
 let apiUrl =`https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
+
+let poemElement = document.querySelector("#poem");
+ poemElement.classList.remove("hidden");
+poemElement.innerHTML = `<div class="generating">⏳ Generating a French poem about ${instructionsInput.value}</div>`;
+
+
 
 axios.get(apiUrl).then(displayPoem);
 
-
-
+ 
 }
 
 
